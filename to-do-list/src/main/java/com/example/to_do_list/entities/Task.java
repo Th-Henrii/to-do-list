@@ -60,4 +60,8 @@ public class Task {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public void markAsCompleted() {
+        this.status = true;
+    }
 }
