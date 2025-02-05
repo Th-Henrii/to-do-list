@@ -1,27 +1,24 @@
-package com.example.to_do_list.entities;
+package com.example.to_do_list.DTO;
 
+import com.example.to_do_list.entities.Task;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import org.springframework.beans.BeanUtils;
 
-import jakarta.persistence.*;
+public class TaskDTO {
 
-@Entity
-@Table(name = "tb_task")
-public class Task {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
-
-    @Column(columnDefinition = "TEXT")
     private String title;
-    @Column(columnDefinition = "TEXT")
     private String description;
     private boolean status;
 
-    public Task(){
+    public TaskDTO(){
 
     }
 
-    public Task(Long taskId, String title, String description, boolean status) {
+    public TaskDTO(Long taskId, String title, String description, boolean status) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;

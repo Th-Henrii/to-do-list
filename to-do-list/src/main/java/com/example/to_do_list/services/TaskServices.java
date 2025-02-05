@@ -1,19 +1,28 @@
 package com.example.to_do_list.services;
 
+import com.example.to_do_list.DTO.TaskDTO;
 import com.example.to_do_list.entities.Task;
 import com.example.to_do_list.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Service
 public class TaskServices {
 
-    @Autowired
+    @Autowired(required = true)
     private TaskRepository taskRepository;
 
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public TaskServices(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
+    public List<TaskDTO> getAllTasks() {
+        List<Task> tasks = taskRepository.findAll(); // Busca todas as tarefas do banco
+        return tasks.stream().map(task -> new TaskDTO(task.getTaskId(), task.getTitle(), task.getDescription(), task.isStatus())).collect(Collectors.toList());
     }
 
     public Optional<Task> getTaskById(Long taskId){
