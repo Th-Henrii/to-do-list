@@ -18,7 +18,7 @@ public class TaskDTO {
 
     }
 
-    public TaskDTO(Long taskId, String title, String description, boolean status) {
+    public TaskDTO(Task entity) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;

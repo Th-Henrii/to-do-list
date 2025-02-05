@@ -5,6 +5,7 @@ import com.example.to_do_list.entities.Task;
 import com.example.to_do_list.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,25 +21,16 @@ public class TaskServices {
         this.taskRepository = taskRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<TaskDTO> getAllTasks() {
         List<Task> tasks = taskRepository.findAll(); // Busca todas as tarefas do banco
-        return tasks.stream().map(task -> new TaskDTO(task.getTaskId(), task.getTitle(), task.getDescription(), task.isStatus())).collect(Collectors.toList());
+        return tasks.stream().map(x -> new TaskDTO(x)).toList();
     }
 
-    public Optional<Task> getTaskById(Long taskId){
-        return taskRepository.findById(taskId);
-    }
-    public Task saveTask(Task task){
-        return taskRepository.save(task);
-    }
-    public void deleteTask(Long taskId){
-        taskRepository.deleteById(taskId);
-    }
-    public void markTaskAsCompleted(Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        task.ifPresent(t -> {
-            t.markAsCompleted();
-            taskRepository.save(t);
-        });
+    @Transactional(readOnly = true)
+    public TaskDTO findById(Long taskId){
+        Task result = taskRepository.findById(taskId).get();
+        TaskDTO dto = new TaskDTO(result);
+        return dto;
     }
 }
