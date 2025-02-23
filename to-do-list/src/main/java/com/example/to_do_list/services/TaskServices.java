@@ -33,4 +33,13 @@ public class TaskServices {
         TaskDTO dto = new TaskDTO(result);
         return dto;
     }
+
+    @Transactional(readOnly = true)
+    public Task addTask(TaskDTO taskDTO){
+        Task task = new Task();
+        task.setDescription(taskDTO.getDescription());
+        task.setTitle(taskDTO.getTitle());
+        task.setStatus(taskDTO.getStatus());
+        return taskRepository.save(task);
+    }
 }

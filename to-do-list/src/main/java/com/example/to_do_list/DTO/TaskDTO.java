@@ -1,15 +1,15 @@
 package com.example.to_do_list.DTO;
 
+
 import com.example.to_do_list.entities.Task;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.springframework.beans.BeanUtils;
+import jakarta.persistence.*;
+
 
 public class TaskDTO {
 
+
     private Long taskId;
+
     private String title;
     private String description;
     private boolean status;
@@ -49,7 +49,7 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
