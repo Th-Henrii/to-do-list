@@ -3,6 +3,8 @@ package com.example.to_do_list.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tb_task")
 public class Task {
@@ -15,17 +17,19 @@ public class Task {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String description;
+    private LocalDateTime createdAt;
     private boolean status;
 
     public Task(){
 
     }
 
-    public Task(Long taskId, String title, String description, boolean status) {
+    public Task(Long taskId, String title, String description, boolean status,LocalDateTime createdAt) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.status = status;
+        this.createdAt = createdAt;
     }
 
     public Long getTaskId() {
@@ -62,5 +66,13 @@ public class Task {
 
     public void markAsCompleted() {
         this.status = true;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

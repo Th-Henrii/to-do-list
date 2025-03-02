@@ -40,6 +40,7 @@ public class TaskServices {
         task.setDescription(taskDTO.getDescription());
         task.setTitle(taskDTO.getTitle());
         task.setStatus(taskDTO.getStatus());
+        task.setCreatedAt(taskDTO.getCreatedAt());
         return taskRepository.save(task);
     }
 

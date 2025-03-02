@@ -4,6 +4,8 @@ package com.example.to_do_list.DTO;
 import com.example.to_do_list.entities.Task;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 
 public class TaskDTO {
 
@@ -12,6 +14,7 @@ public class TaskDTO {
 
     private String title;
     private String description;
+    private LocalDateTime createdAt;
     private boolean status;
 
     public TaskDTO(){
@@ -23,6 +26,7 @@ public class TaskDTO {
         this.title = title;
         this.description = description;
         this.status = status;
+        this.createdAt = createdAt;
     }
 
     public Long getTaskId() {
@@ -60,4 +64,13 @@ public class TaskDTO {
     public void markAsCompleted() {
         this.status = true;
     }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
+
