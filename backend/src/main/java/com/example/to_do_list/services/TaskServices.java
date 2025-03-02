@@ -23,7 +23,7 @@ public class TaskServices {
 
     @Transactional(readOnly = true)
     public List<TaskDTO> getAllTasks() {
-        List<Task> tasks = taskRepository.findAll(); // Busca todas as tarefas do banco
+        List<Task> tasks = taskRepository.findAll();
         return tasks.stream().map(x -> new TaskDTO(x)).toList();
     }
 
